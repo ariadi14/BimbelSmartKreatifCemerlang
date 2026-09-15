@@ -78,7 +78,7 @@ jobs:
           android {
               signingConfigs {
                   create("release") {
-                      storeFile = file("app/release-key.jks")
+                      storeFile = file("release-key.jks")
                       storePassword = "bimbel123"
                       keyAlias = "bimbel"
                       keyPassword = "bimbel123"
