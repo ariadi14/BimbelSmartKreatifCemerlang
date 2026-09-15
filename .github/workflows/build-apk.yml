@@ -40,7 +40,18 @@ jobs:
         run: |
           SETTINGS=$(find project -type f \( -name "settings.gradle.kts" -o -name "settings.gradle" \) | head -n 1)
           echo "PROJECT_DIR=$(dirname "$SETTINGS")" >> "$GITHUB_ENV"
+      - name: Fix Java JVM target
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: |
+          cat >> app/build.gradle.kts <<'EOF'
 
+          android {
+              compileOptions {
+                  sourceCompatibility = JavaVersion.VERSION_17
+                  targetCompatibility = JavaVersion.VERSION_17
+              }
+          }
+          EOF
       - name: Build APK
         working-directory: ${{ env.PROJECT_DIR }}
         run: gradle assembleDebug --no-daemon
