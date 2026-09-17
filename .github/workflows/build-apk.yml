@@ -34,7 +34,7 @@ jobs:
         run: |
           set -e
 
-          ZIP="Project_apk_Bimbel_Smart_Kreatif_Cemerlang_BLUEPRINT_V2_VISUAL_FIX_FINAL_TEST_FIX_2026-09-17.zip"
+          ZIP="Project_apk_Bimbel_Smart_Kreatif_Cemerlang_BLUEPRINT_V2_VISUAL_FIX_FINAL_TEST_FIX_LAPORAN_LAINNYA_CLEAR_2026-09-17.zip"
 
           echo "SOURCE ZIP:"
           echo "$ZIP"
