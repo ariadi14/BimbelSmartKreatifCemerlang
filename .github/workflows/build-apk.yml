@@ -30,16 +30,37 @@ jobs:
         with:
           gradle-version: "8.2.1"
 
-      - name: Extract project
+      - name: Extract Blueprint V2 Source
         run: |
+          set -e
+
+          ZIP="Project_apk_Bimbel_Smart_Kreatif_Cemerlang_BLUEPRINT_V2_SOURCE_NEW_2026-09-17.zip"
+
+          echo "SOURCE ZIP:"
+          echo "$ZIP"
+
+          test -f "$ZIP"
+
           mkdir -p project
-          ZIP=$(find . -maxdepth 1 -type f -name "*.zip" -print -quit)
           unzip -q "$ZIP" -d project
 
-      - name: Find project
+          echo "SOURCE CONTENT:"
+          find project -maxdepth 3 -type f | head -100
+
+      - name: Find Android Project
         run: |
-          SETTINGS=$(find project -type f \( -name "settings.gradle.kts" -o -name "settings.gradle" \) | head -n 1)
-          echo "PROJECT_DIR=$(dirname "$SETTINGS")" >> "$GITHUB_ENV"
+          set -e
+
+          SETTINGS=$(find project -type f \
+            \( -name "settings.gradle.kts" -o -name "settings.gradle" \) \
+            | head -n 1)
+
+          test -n "$SETTINGS"
+
+          PROJECT_DIR=$(dirname "$SETTINGS")
+
+          echo "PROJECT_DIR=$PROJECT_DIR"
+          echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
 
       - name: Fix Java JVM target
         working-directory: ${{ env.PROJECT_DIR }}
@@ -107,5 +128,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: BimbelSmartKreatifCemerlang-Release-APK
+          name: BimbelSmartKreatifCemerlang-Blueprint-V2-Release-APK
           path: "${{ env.PROJECT_DIR }}/app/build/outputs/apk/release/app-release.apk"
