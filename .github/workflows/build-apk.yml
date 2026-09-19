@@ -34,7 +34,7 @@ jobs:
         run: |
           set -e
 
-          ZIP="Project_apk_Bimbel_Smart_Kreatif_Cemerlang_KUITANSI_LONGNAME_FIX_FINAL_2026-09-19.zip"
+          ZIP="Project_apk_Bimbel_Smart_Kreatif_Cemerlang_KUITANSI_TEMPLATE_FINAL_2026-09-19.zip"
 
           echo "SOURCE ZIP:"
           echo "$ZIP"
